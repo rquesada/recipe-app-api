@@ -25,3 +25,5 @@ docker-compose down
 
 # Create a superuser
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
+admin@example.com
+123Queso
