@@ -7,6 +7,9 @@ docker-compose run --rm app sh -c "flake8"
 # Create a new django project inside Docker
 docker-compose run --rm app sh -c "django-admin startproject app ."
 
+# Create a new django module
+docker-compose run --rm app sh -c "python manage.py startapp <module_name>"
+
 # Run project
 docker-compose up
 
