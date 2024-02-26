@@ -19,6 +19,17 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validate_data):
         """Create and return a new user with encrypted password"""
         return get_user_model().objects.create_user(**validate_data)
+
+    def update(self, instance, validated_data):
+        """Update and return a user instance with encrypted password"""
+        password = validated_data.pop('password', None)
+        user = super().update(instance, validated_data)
+        
+        if password:
+            user.set_password(password)
+            user.save()
+        
+        return user
     
 
 class AuthTokenSerializer(serializers.Serializer):
